@@ -34,7 +34,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		var name: String = "sun"
 		var distance: Float = 0.0
 		var radius: CGFloat = 0.2
-		var image: String = "art.scnassets/2k/2k_sun.jpg"
+		var image: String = "art.scnassets/8k_sun.jpg"
 		var duration: Double = 14.0
 		var orbit: Double = 14.0
 	}
@@ -52,16 +52,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	*/
 	
 	let planets: [Planet] = [
-		Planet(name: "sun", distance: 0.0, radius: 0.2, image: "art.scnassets/2k/2k_sun.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "mercury", distance: 0.4, radius: 0.006, image: "art.scnassets/2k/2k_mercury.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "venus", distance: 0.7, radius: 0.015, image: "art.scnassets/2k/2k_venus_atmosphere.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/2k/2k_earth_day_map.jpg", duration: 14.0, orbit: 14.0),
-		//Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/2k/2k_earth_nightmap.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "mars", distance: 1.62, radius: 0.008, image: "art.scnassets/2k/2k_mars.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "jupiter", distance: 5.30, radius: 0.175, image: "art.scnassets/2k/2k_jupiter.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "saturn", distance: 9.68, radius: 0.147, image: "art.scnassets/2k/2k_saturn.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "uranus", distance: 19.3, radius: 0.062, image: "art.scnassets/2k/2k_uranus.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "neptune", distance: 30.2, radius: 0.06, image: "art.scnassets/2k/2k_neptune.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "sun", distance: 0.0, radius: 0.2, image: "art.scnassets/8k_sun.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "mercury", distance: 0.4, radius: 0.006, image: "art.scnassets/8k_mercury.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "venus", distance: 0.7, radius: 0.015, image: "art.scnassets/8k_venus_atmosphere.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/8k_earth_day_map.jpg", duration: 14.0, orbit: 14.0),
+		//Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/8k_earth_night_map.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "mars", distance: 1.62, radius: 0.008, image: "art.scnassets/8k_mars.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "jupiter", distance: 5.30, radius: 0.175, image: "art.scnassets/8k_jupiter.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "saturn", distance: 9.68, radius: 0.147, image: "art.scnassets/8k_saturn.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "uranus", distance: 19.3, radius: 0.062, image: "art.scnassets/2k_uranus.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "neptune", distance: 30.2, radius: 0.06, image: "art.scnassets/2k_neptune.jpg", duration: 14.0, orbit: 14.0),
 		]
     
     override func viewDidLoad() {
@@ -92,19 +92,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 			print("planet.duration: \(planet.duration)")
 			print("planet.orbit: \(planet.orbit)")
 			
-			let sphere = SCNSphere(radius: planet.radius)
+			let sphere = SCNSphere(radius: planet.radius/2)
 			let material = SCNMaterial()
 			material.diffuse.contents = UIImage(named: planet.image)
 			sphere.materials = [material]
 			
 			let node = SCNNode()
-			let pos = planet.distance + Float(-1.1)
-			node.position = SCNVector3(x: 0, y: 0, z: pos)
+			//let pos = planet.distance // + Float(-1.1)
+			node.position = SCNVector3(x: 0.0, y: 0.0, z: planet.distance)
 			print("node.position: \(node.position)")
 			node.geometry = sphere
 			
 			let helperNode = SCNNode()
-			helperNode.position = SCNVector3(x: 0, y: 0, z: -1.1)
+			helperNode.position = SCNVector3(x: 0.0, y: 0.0, z: 0.0) //-1.1)
 			print("helperNode.position: \(helperNode.position)")
 			helperNode.addChildNode(node)
 			
