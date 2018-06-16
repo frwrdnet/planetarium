@@ -13,6 +13,7 @@
 		572CED7F20C3ABF50053D2D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572CED7D20C3ABF50053D2D9 /* Main.storyboard */; };
 		572CED8120C3ABF60053D2D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572CED8020C3ABF60053D2D9 /* Assets.xcassets */; };
 		572CED8420C3ABF60053D2D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572CED8220C3ABF60053D2D9 /* LaunchScreen.storyboard */; };
+		5754E20A20C4D0970058C2A0 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5754E20920C4D0970058C2A0 /* Planet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		572CED8020C3ABF60053D2D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572CED8320C3ABF60053D2D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572CED8520C3ABF60053D2D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5754E20920C4D0970058C2A0 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				572CED7720C3ABF50053D2D9 /* AppDelegate.swift */,
 				572CED7B20C3ABF50053D2D9 /* ViewController.swift */,
+				5754E20920C4D0970058C2A0 /* Planet.swift */,
 				572CED7D20C3ABF50053D2D9 /* Main.storyboard */,
 				572CED7920C3ABF50053D2D9 /* art.scnassets */,
 				572CED8020C3ABF60053D2D9 /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5754E20A20C4D0970058C2A0 /* Planet.swift in Sources */,
 				572CED7C20C3ABF50053D2D9 /* ViewController.swift in Sources */,
 				572CED7820C3ABF50053D2D9 /* AppDelegate.swift in Sources */,
 			);
