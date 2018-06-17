@@ -16,20 +16,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 	
 	// MARK: - Planets
 	
-	/*
-	Relative sizes and distances:
-	Sun: 1,377,648 kilometers (Ratio: 1:1)
-	
-	Mercury: 4,880 kilometers (Ratio: 1:277)
-	Venus: 12,104 kilometers (Ratio: 1:113)
-	Earth: 12,756 kilometers (Ratio: 1:108)
-	Mars: 6,788 kilometers (Ratio: 1:208)
-	Jupiter: 142,740 kilometers (Ratio: 1:9.68)
-	Saturn: 120,034 kilometers (Ratio: 1:11.4)
-	Uranus: 51,152 kilometers (Ratio: 1:26.8)
-	Neptune: 49,620 kilometers (Ratio: 1:27.7)
-	*/
-	
 	struct Planet {
 		var name: String = "sun"
 		var distance: Float = 0.0
@@ -39,29 +25,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		var orbit: Double = 14.0
 	}
 	
-	/*
-	Planet(name: "sun", distance: -1.1, radius: 0.2, image: UIImage(named: "art.scnassets/2k/2k_sun.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "mercury", distance: -0.513, radius: 0.006, image: UIImage(named: "art.scnassets/2k/2k_mercury.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "venus", distance: -0.178, radius: 0.015, image: UIImage(named: "art.scnassets/2k/2k_venus_atmosphere.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "earth", distance: -0.1, radius: 0.016, image: UIImage(named: "art.scnassets/2k/2k_earth_daymap.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "mars", distance: 1.62, radius: 0.008, image: UIImage(named: "art.scnassets/2k/2k_mars.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "jupiter", distance: 5.30, radius: 0.175, image: UIImage(named: "art.scnassets/2k/2k_jupiter.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "saturn", distance: 9.68, radius: 0.147, image: UIImage(named: "art.scnassets/2k/2k_saturn.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "uranus", distance: 19.3, radius: 0.062, image: UIImage(named: "art.scnassets/2k/2k_uranus.jpg")!, duration: 14.0, orbit: 14.0),
-	Planet(name: "neptune", distance: 30.2, radius: 0.06, image: UIImage(named: "art.scnassets/2k/2k_neptune.jpg")!, duration: 14.0, orbit: 14.0),
-	*/
+	let speedOfEarthsOrbit = 29.78
+	let durationOfEarthsDay = 60.0
+	
+	let switchPlanetsOnTouch = false
+	var movePlanets = true
 	
 	let planets: [Planet] = [
-		Planet(name: "sun", distance: 0.0, radius: 0.2, image: "art.scnassets/8k_sun.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "mercury", distance: 0.4, radius: 0.006, image: "art.scnassets/8k_mercury.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "venus", distance: 0.7, radius: 0.015, image: "art.scnassets/8k_venus_atmosphere.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/8k_earth_day_map.jpg", duration: 14.0, orbit: 14.0),
-		//Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/8k_earth_night_map.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "mars", distance: 1.62, radius: 0.008, image: "art.scnassets/8k_mars.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "jupiter", distance: 5.30, radius: 0.175, image: "art.scnassets/8k_jupiter.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "saturn", distance: 9.68, radius: 0.147, image: "art.scnassets/8k_saturn.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "uranus", distance: 19.3, radius: 0.062, image: "art.scnassets/2k_uranus.jpg", duration: 14.0, orbit: 14.0),
-		Planet(name: "neptune", distance: 30.2, radius: 0.06, image: "art.scnassets/2k_neptune.jpg", duration: 14.0, orbit: 14.0),
+		Planet(name: "sun", distance: 0.0, radius: 0.2, image: "art.scnassets/8k_sun.jpg", duration: 36, orbit: 0.0),
+		Planet(name: "mercury", distance: 0.4, radius: 0.006, image: "art.scnassets/8k_mercury.jpg", duration: 87.97, orbit: 1.607),
+		Planet(name: "venus", distance: 0.7, radius: 0.015, image: "art.scnassets/8k_venus_atmosphere.jpg", duration: 243, orbit: 1.175),
+		Planet(name: "earth", distance: 1.0, radius: 0.016, image: "art.scnassets/8k_earth_day_map.jpg", duration: 1, orbit: 1),
+		Planet(name: "mars", distance: 1.62, radius: 0.008, image: "art.scnassets/8k_mars.jpg", duration: 24.6, orbit: 0.808),
+		Planet(name: "jupiter", distance: 5.30, radius: 0.175, image: "art.scnassets/8k_jupiter.jpg", duration: 9.8, orbit: 0.438),
+		Planet(name: "saturn", distance: 9.68, radius: 0.147, image: "art.scnassets/8k_saturn.jpg", duration: 0.416, orbit: 0.325),
+		Planet(name: "uranus", distance: 19.3, radius: 0.062, image: "art.scnassets/2k_uranus.jpg", duration: 0.708, orbit: 0.228),
+		Planet(name: "neptune", distance: 30.2, radius: 0.06, image: "art.scnassets/2k_neptune.jpg", duration: 0.666, orbit: 0.182),
 		]
     
     override func viewDidLoad() {
@@ -72,16 +51,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+		sceneView.debugOptions = ARSCNDebugOptions.showFeaturePoints
+		sceneView.debugOptions = ARSCNDebugOptions.showWorldOrigin
+		// sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
 		
 		// Lighting
 		sceneView.autoenablesDefaultLighting = true
 		
 		// Camera control
 		sceneView.allowsCameraControl = true
+		
+		// Add background
+		sceneView.backgroundColor = UIColor.black
 
 		arrangePlanets()
 	
     }
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if switchPlanetsOnTouch {
+			let location = touches.first!.location(in: sceneView)
+			var hitTestOptions = [SCNHitTestOption: Any]()
+			let hitResults: [SCNHitTestResult]  = sceneView.hitTest(location, options: hitTestOptions)
+			if let hit = hitResults.first {
+					switchPlanets()
+					return
+			}
+		}
+	}
 	
 	func arrangePlanets() {
 		for planet in planets {
@@ -102,20 +99,49 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 			node.position = SCNVector3(x: 0.0, y: 0.0, z: planet.distance)
 			print("node.position: \(node.position)")
 			node.geometry = sphere
+			node.name = planet.name
 			
 			let helperNode = SCNNode()
 			helperNode.position = SCNVector3(x: 0.0, y: 0.0, z: 0.0) //-1.1)
 			print("helperNode.position: \(helperNode.position)")
 			helperNode.addChildNode(node)
 			
-			node.addAnimation(rotate(duration: planet.duration), forKey: "planetSpin")
-			helperNode.addAnimation(rotate(duration: planet.orbit), forKey: "planetOrbit")
+			node.addAnimation(rotate(duration: planet.duration*durationOfEarthsDay), forKey: "planetSpin")
+			helperNode.addAnimation(rotate(duration: planet.orbit*speedOfEarthsOrbit), forKey: "planetOrbit")
 			
 			if planet.name == "sun" {
 				sceneView.scene.rootNode.addChildNode(node)
 			} else {
 				sceneView.scene.rootNode.addChildNode(helperNode)
 			}
+		}
+	}
+	
+	func stopPlanets() {
+		let nodes = sceneView.scene.rootNode.childNodes
+		for index in 1...nodes.count-1 {
+			nodes[index].isPaused = true //.pauseAnimation(forKey: "planetOrbit")
+			//nodes[index].removeAnimation(forKey: "planetOrbit")
+			//nodes[index].position = SCNVector3(x: 0.0, y: 0.0, z: planets[nodes.filter{$0.name==nodes[index].name}[0]].distance)
+		}
+	}
+	
+	func startPlanets() {
+		let nodes = sceneView.scene.rootNode.childNodes
+		for index in 1...nodes.count-1 {
+			nodes[index].isPaused = false //.resumeAnimation(forKey: "planetOrbit")
+			//nodes[index].addAnimation(rotate(duration: planets[index].orbit*speedOfEarthsOrbit), forKey: "planetOrbit")
+			//nodes[index].position = SCNVector3(x: 0.0, y: 0.0, z: planets[index].distance)
+		}
+	}
+	
+	func switchPlanets() {
+		if movePlanets {
+			stopPlanets()
+			movePlanets = false
+		} else {
+			startPlanets()
+			movePlanets = true
 		}
 	}
 	
